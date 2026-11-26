@@ -125,7 +125,7 @@ unsafe fn convert_event<'input>(
                 sys::YAML_DOUBLE_QUOTED_SCALAR_STYLE => ScalarStyle::DoubleQuoted,
                 sys::YAML_LITERAL_SCALAR_STYLE => ScalarStyle::Literal,
                 sys::YAML_FOLDED_SCALAR_STYLE => ScalarStyle::Folded,
-                sys::YAML_ANY_SCALAR_STYLE | _ => unreachable!(),
+                sys::YAML_ANY_SCALAR_STYLE => unreachable!(),
             },
             repr: if let Cow::Borrowed(input) = input {
                 Some(&input[sys.start_mark.index as usize..sys.end_mark.index as usize])
@@ -144,7 +144,6 @@ unsafe fn convert_event<'input>(
         }),
         sys::YAML_MAPPING_END_EVENT => Event::MappingEnd,
         sys::YAML_NO_EVENT => unreachable!(),
-        _ => unimplemented!(),
     }
 }
 

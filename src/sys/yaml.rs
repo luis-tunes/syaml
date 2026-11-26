@@ -2,7 +2,6 @@ use crate::sys::libc;
 use core::ops::Deref;
 use core::ptr::{self, addr_of};
 
-pub use self::{yaml_encoding_t::*, yaml_event_type_t::*, yaml_node_type_t::*};
 pub use core::primitive::{i64 as ptrdiff_t, u64 as size_t, u8 as yaml_char_t};
 
 /// The version directive data.
@@ -57,6 +56,7 @@ pub enum yaml_break_t {
     YAML_CRLN_BREAK = 3,
 }
 
+#[allow(dead_code)]
 /// Many bad things could happen with the parser and emitter.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(u32)]
@@ -138,6 +138,7 @@ pub enum yaml_mapping_style_t {
     YAML_FLOW_MAPPING_STYLE = 2,
 }
 
+#[allow(dead_code)]
 /// Token types.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(u32)]
@@ -341,6 +342,7 @@ pub struct unnamed_yaml_token_t_data_tag_directive {
     pub prefix: *mut yaml_char_t,
 }
 
+#[allow(dead_code)]
 /// Event types.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(u32)]
@@ -573,6 +575,7 @@ pub struct unnamed_yaml_event_t_data_mapping_start {
     pub style: yaml_mapping_style_t,
 }
 
+#[allow(dead_code)]
 /// Node types.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(u32)]
@@ -765,6 +768,7 @@ pub struct yaml_simple_key_t {
     pub mark: yaml_mark_t,
 }
 
+#[allow(dead_code)]
 /// The states of the parser.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(u32)]
@@ -988,6 +992,7 @@ pub(crate) struct unnamed_yaml_parser_t_input_string {
 pub type yaml_write_handler_t =
     unsafe fn(data: *mut libc::c_void, buffer: *mut libc::c_uchar, size: size_t) -> libc::c_int;
 
+#[allow(dead_code)]
 /// The emitter states.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 #[repr(u32)]

@@ -14,8 +14,8 @@ use crate::sys::{
     YAML_DOCUMENT_START_TOKEN, YAML_DOUBLE_QUOTED_SCALAR_STYLE, YAML_FLOW_ENTRY_TOKEN,
     YAML_FLOW_MAPPING_END_TOKEN, YAML_FLOW_MAPPING_START_TOKEN, YAML_FLOW_SEQUENCE_END_TOKEN,
     YAML_FLOW_SEQUENCE_START_TOKEN, YAML_FOLDED_SCALAR_STYLE, YAML_KEY_TOKEN,
-    YAML_LITERAL_SCALAR_STYLE, YAML_MEMORY_ERROR, YAML_NO_ERROR, YAML_PLAIN_SCALAR_STYLE,
-    YAML_SCALAR_TOKEN, YAML_SCANNER_ERROR, YAML_SINGLE_QUOTED_SCALAR_STYLE, YAML_STREAM_END_TOKEN,
+    YAML_LITERAL_SCALAR_STYLE, YAML_MEMORY_ERROR, YAML_PLAIN_SCALAR_STYLE, YAML_SCALAR_TOKEN,
+    YAML_SCANNER_ERROR, YAML_SINGLE_QUOTED_SCALAR_STYLE, YAML_STREAM_END_TOKEN,
     YAML_STREAM_START_TOKEN, YAML_TAG_DIRECTIVE_TOKEN, YAML_TAG_TOKEN, YAML_VALUE_TOKEN,
     YAML_VERSION_DIRECTIVE_TOKEN,
 };
@@ -120,44 +120,6 @@ macro_rules! READ_LINE {
     ($parser:expr, $string:expr) => {
         READ_LINE($parser, addr_of_mut!($string))
     };
-}
-
-/// Scan the input stream and produce the next token.
-///
-/// Call the function subsequently to produce a sequence of tokens corresponding
-/// to the input stream. The initial token has the type YAML_STREAM_START_TOKEN
-/// while the ending token has the type YAML_STREAM_END_TOKEN.
-///
-/// An application is responsible for freeing any buffers associated with the
-/// produced token object using the yaml_token_delete function.
-///
-/// An application must not alternate the calls of yaml_parser_scan() with the
-/// calls of yaml_parser_parse() or yaml_parser_load(). Doing this will break
-/// the parser.
-pub unsafe fn yaml_parser_scan(parser: *mut yaml_parser_t, token: *mut yaml_token_t) -> Success {
-    __assert!(!parser.is_null());
-    __assert!(!token.is_null());
-    memset(
-        token as *mut libc::c_void,
-        0,
-        size_of::<yaml_token_t>() as libc::c_ulong,
-    );
-    if (*parser).stream_end_produced || (*parser).error != YAML_NO_ERROR {
-        return OK;
-    }
-    if !(*parser).token_available {
-        if yaml_parser_fetch_more_tokens(parser).fail {
-            return FAIL;
-        }
-    }
-    *token = DEQUEUE!((*parser).tokens);
-    (*parser).token_available = false;
-    let fresh2 = addr_of_mut!((*parser).tokens_parsed);
-    *fresh2 = (*fresh2).force_add(1);
-    if (*token).type_ == YAML_STREAM_END_TOKEN {
-        (*parser).stream_end_produced = true;
-    }
-    OK
 }
 
 unsafe fn yaml_parser_set_scanner_error(

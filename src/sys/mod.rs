@@ -216,36 +216,6 @@ mod externs {
     }
 }
 
-mod fmt {
-    use crate::sys::yaml::yaml_char_t;
-    use core::fmt::{self, Write};
-    use core::ptr;
-
-    pub struct WriteToPtr {
-        ptr: *mut yaml_char_t,
-    }
-
-    impl WriteToPtr {
-        pub unsafe fn new(ptr: *mut yaml_char_t) -> Self {
-            WriteToPtr { ptr }
-        }
-
-        pub fn write_fmt(&mut self, args: fmt::Arguments) {
-            let _ = Write::write_fmt(self, args);
-        }
-    }
-
-    impl Write for WriteToPtr {
-        fn write_str(&mut self, s: &str) -> fmt::Result {
-            unsafe {
-                ptr::copy_nonoverlapping(s.as_ptr(), self.ptr, s.len());
-                self.ptr = self.ptr.add(s.len());
-            }
-            Ok(())
-        }
-    }
-}
-
 trait PointerExt: Sized {
     fn c_offset_from(self, origin: Self) -> isize;
 }
@@ -266,9 +236,7 @@ impl<T> PointerExt for *mut T {
 mod macros;
 
 mod api;
-mod dumper;
 mod emitter;
-mod loader;
 mod ops;
 mod parser;
 mod reader;
@@ -278,37 +246,26 @@ mod writer;
 mod yaml;
 
 pub use crate::sys::api::{
-    yaml_alias_event_initialize, yaml_document_add_mapping, yaml_document_add_scalar,
-    yaml_document_add_sequence, yaml_document_append_mapping_pair,
-    yaml_document_append_sequence_item, yaml_document_delete, yaml_document_end_event_initialize,
-    yaml_document_get_node, yaml_document_get_root_node, yaml_document_initialize,
-    yaml_document_start_event_initialize, yaml_emitter_delete, yaml_emitter_initialize,
-    yaml_emitter_set_break, yaml_emitter_set_canonical, yaml_emitter_set_encoding,
-    yaml_emitter_set_indent, yaml_emitter_set_output, yaml_emitter_set_output_string,
-    yaml_emitter_set_unicode, yaml_emitter_set_width, yaml_event_delete,
-    yaml_mapping_end_event_initialize, yaml_mapping_start_event_initialize, yaml_parser_delete,
-    yaml_parser_initialize, yaml_parser_set_encoding, yaml_parser_set_input,
-    yaml_parser_set_input_string, yaml_scalar_event_initialize, yaml_sequence_end_event_initialize,
-    yaml_sequence_start_event_initialize, yaml_stream_end_event_initialize,
-    yaml_stream_start_event_initialize, yaml_token_delete,
+    yaml_document_end_event_initialize, yaml_document_start_event_initialize, yaml_emitter_delete,
+    yaml_emitter_initialize, yaml_emitter_set_output, yaml_emitter_set_unicode,
+    yaml_emitter_set_width, yaml_event_delete, yaml_mapping_end_event_initialize,
+    yaml_mapping_start_event_initialize, yaml_parser_delete, yaml_parser_initialize,
+    yaml_parser_set_encoding, yaml_parser_set_input_string, yaml_scalar_event_initialize,
+    yaml_sequence_end_event_initialize, yaml_sequence_start_event_initialize,
+    yaml_stream_end_event_initialize, yaml_stream_start_event_initialize,
 };
-pub use crate::sys::dumper::{yaml_emitter_close, yaml_emitter_dump, yaml_emitter_open};
 pub use crate::sys::emitter::yaml_emitter_emit;
-pub use crate::sys::loader::yaml_parser_load;
 pub use crate::sys::parser::yaml_parser_parse;
-pub use crate::sys::scanner::yaml_parser_scan;
 pub use crate::sys::writer::yaml_emitter_flush;
-pub use crate::sys::yaml::{
-    yaml_alias_data_t, yaml_break_t, yaml_document_t, yaml_emitter_state_t, yaml_emitter_t,
-    yaml_encoding_t, yaml_error_type_t, yaml_event_t, yaml_event_type_t, yaml_mapping_style_t,
-    yaml_mark_t, yaml_node_item_t, yaml_node_pair_t, yaml_node_t, yaml_node_type_t,
-    yaml_parser_state_t, yaml_parser_t, yaml_read_handler_t, yaml_scalar_style_t,
-    yaml_sequence_style_t, yaml_simple_key_t, yaml_stack_t, yaml_tag_directive_t, yaml_token_t,
-    yaml_token_type_t, yaml_version_directive_t, yaml_write_handler_t,
-};
 #[doc(hidden)]
 pub use crate::sys::yaml::{
     yaml_break_t::*, yaml_emitter_state_t::*, yaml_encoding_t::*, yaml_error_type_t::*,
-    yaml_event_type_t::*, yaml_mapping_style_t::*, yaml_node_type_t::*, yaml_parser_state_t::*,
-    yaml_scalar_style_t::*, yaml_sequence_style_t::*, yaml_token_type_t::*,
+    yaml_event_type_t::*, yaml_mapping_style_t::*, yaml_parser_state_t::*, yaml_scalar_style_t::*,
+    yaml_sequence_style_t::*, yaml_token_type_t::*,
+};
+pub use crate::sys::yaml::{
+    yaml_emitter_state_t, yaml_emitter_t, yaml_encoding_t, yaml_error_type_t, yaml_event_t,
+    yaml_mapping_style_t, yaml_mark_t, yaml_parser_state_t, yaml_parser_t, yaml_scalar_style_t,
+    yaml_sequence_style_t, yaml_simple_key_t, yaml_tag_directive_t, yaml_token_t,
+    yaml_token_type_t, yaml_version_directive_t, yaml_write_handler_t,
 };
