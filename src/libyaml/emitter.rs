@@ -1,11 +1,11 @@
 use crate::libyaml;
 use crate::libyaml::util::Owned;
+use crate::sys;
 use std::ffi::c_void;
 use std::io;
 use std::mem::{self, MaybeUninit};
 use std::ptr::{self, addr_of_mut};
 use std::slice;
-use unsafe_libyaml as sys;
 
 #[derive(Debug)]
 pub(crate) enum Error {

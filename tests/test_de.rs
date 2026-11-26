@@ -8,9 +8,9 @@
 
 use indoc::indoc;
 use serde_derive::Deserialize;
-use syaml::{Deserializer, Number, Value};
 use std::collections::BTreeMap;
 use std::fmt::Debug;
+use syaml::{Deserializer, Number, Value};
 
 fn test_de<T>(yaml: &str, expected: &T)
 where
@@ -453,12 +453,8 @@ fn test_numbers() {
 #[test]
 fn test_nan() {
     // There is no negative NaN in YAML.
-    assert!(syaml::from_str::<f32>(".nan")
-        .unwrap()
-        .is_sign_positive());
-    assert!(syaml::from_str::<f64>(".nan")
-        .unwrap()
-        .is_sign_positive());
+    assert!(syaml::from_str::<f32>(".nan").unwrap().is_sign_positive());
+    assert!(syaml::from_str::<f64>(".nan").unwrap().is_sign_positive());
 }
 
 #[test]

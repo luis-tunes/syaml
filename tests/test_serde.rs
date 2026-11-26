@@ -8,10 +8,10 @@
 use indoc::indoc;
 use serde::ser::SerializeMap;
 use serde_derive::{Deserialize, Serialize};
-use syaml::{Mapping, Number, Value};
 use std::collections::BTreeMap;
 use std::fmt::Debug;
 use std::iter;
+use syaml::{Mapping, Number, Value};
 
 fn test_serde<T>(thing: &T, yaml: &str)
 where

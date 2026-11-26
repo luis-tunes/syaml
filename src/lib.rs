@@ -115,7 +115,6 @@
 //! }
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/syaml/0.9.34+deprecated")]
 #![deny(missing_docs, unsafe_op_in_unsafe_fn)]
 // Suppressed clippy_pedantic lints
 #![allow(
@@ -160,6 +159,8 @@
     clippy::must_use_candidate,
 )]
 
+extern crate alloc;
+
 pub use crate::de::{from_reader, from_slice, from_str, Deserializer};
 pub use crate::error::{Error, Location, Result};
 pub use crate::ser::{to_string, to_writer, Serializer};
@@ -177,6 +178,8 @@ pub mod mapping;
 mod number;
 mod path;
 mod ser;
+#[allow(dead_code)]
+mod sys;
 pub mod value;
 pub mod with;
 

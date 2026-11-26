@@ -1,8 +1,8 @@
 use crate::libyaml::cstr::CStr;
+use crate::sys;
 use std::fmt::{self, Debug, Display};
 use std::mem::MaybeUninit;
 use std::ptr::NonNull;
-use unsafe_libyaml as sys;
 
 pub(crate) type Result<T> = std::result::Result<T, Error>;
 

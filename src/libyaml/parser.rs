@@ -2,12 +2,12 @@ use crate::libyaml::cstr::{self, CStr};
 use crate::libyaml::error::{Error, Mark, Result};
 use crate::libyaml::tag::Tag;
 use crate::libyaml::util::Owned;
+use crate::sys;
 use std::borrow::Cow;
 use std::fmt::{self, Debug};
 use std::mem::MaybeUninit;
 use std::ptr::{addr_of_mut, NonNull};
 use std::slice;
-use unsafe_libyaml as sys;
 
 pub(crate) struct Parser<'input> {
     pin: Owned<ParserPinned<'input>>,
