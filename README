@@ -6,7 +6,7 @@ syaml is a maintained fork of serde_yaml and unsafe-libyaml, both
 archived in March 2024. It keeps the serde_yaml API and replaces the
 c2rust translation of libyaml with safe Rust, one part at a time.
 
-Status: early. Not usable yet.
+Status: drop-in for serde_yaml 0.9. Not on crates.io yet.
 
 Test:
 
