@@ -8,5 +8,13 @@ c2rust translation of libyaml with safe Rust, one part at a time.
 
 Status: early. Not usable yet.
 
+Test:
+
+	git submodule update --init
+	cargo test
+
+yaml-test-suite: 330 of 402 cases pass, as in libyaml.
+Known failures: see tests/skip.
+
 Plan: see PLAN.
 License: Apache 2.0. See LICENSE and NOTICE.
