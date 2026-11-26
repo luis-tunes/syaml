@@ -1,6 +1,6 @@
 [package]
 name = "syaml"
-version = "0.0.0"
+version = "0.1.0"
 description = "Safe YAML for Rust"
 license = "Apache-2.0"
 repository = "https://github.com/luis-tunes/syaml"
