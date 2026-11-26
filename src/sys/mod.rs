@@ -32,6 +32,7 @@
     clippy::single_match_else,
     clippy::too_many_arguments,
     clippy::too_many_lines,
+    clippy::needless_continue,
     clippy::unnecessary_cast,
     clippy::unreadable_literal,
     clippy::while_immutable_condition, // https://github.com/rust-lang/rust-clippy/issues/3548
@@ -217,7 +218,7 @@ mod externs {
             }
         }
         let _abort_on_panic = Abort;
-        panic!("{}:{}: Assertion `{}` failed.", __file, __line, __assertion);
+        panic!("{__file}:{__line}: Assertion `{__assertion}` failed.");
     }
 }
 

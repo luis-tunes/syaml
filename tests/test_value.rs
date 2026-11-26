@@ -143,7 +143,7 @@ fn test_tagged() {
         Variant(usize),
     }
 
-    let value = syaml::to_value(&Enum::Variant(0)).unwrap();
+    let value = syaml::to_value(Enum::Variant(0)).unwrap();
 
     let deserialized: syaml::Value = syaml::from_value(value.clone()).unwrap();
     assert_eq!(value, deserialized);
