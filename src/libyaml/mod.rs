@@ -6,3 +6,5 @@ pub mod tag;
 mod util;
 
 use self::error::Error;
+#[cfg(test)]
+mod suite;

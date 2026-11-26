@@ -1,0 +1,72 @@
+2JQS: Block Mapping with Missing Keys
+2LFX: Spec Example 6.13. Reserved Directives [1.3]
+2SXE: Anchors With Colon in Name
+4ABK: Flow Mapping Separate Values
+4MUZ/00: Flow mapping colon on line after key
+4MUZ/01: Flow mapping colon on line after key
+4MUZ/02: Flow mapping colon on line after key
+58MP: Flow mapping edge cases
+5MUD: Colon and adjacent value on next line
+5T43: Colon at the beginning of adjacent flow scalar
+652Z: Question mark at start of flow key
+6BCT: Spec Example 6.3. Separation Spaces
+6CA3: Tab indented top flow
+6LVF: Spec Example 6.13. Reserved Directives
+6M2F: Aliases in Explicit Block Mapping
+7Z25: Bare document after document end marker
+8XYN: Anchor with unicode character
+96NN/00: Leading tab content in literals
+96NN/01: Leading tab content in literals
+9C9N: Wrong indented flow sequence
+9HCY: Need document footer before directives
+9JBA: Invalid comment after end of flow sequence
+9SA2: Multiline double quoted flow mapping key
+A2M4: Spec Example 6.2. Indentation Indicators
+BEC7: Spec Example 6.14. “YAML” directive
+CFD4: Empty implicit key in single pair flow sequences
+CVW2: Invalid comment after comma
+DBG4: Spec Example 7.10. Plain Characters
+DK3J: Zero indented block scalar with line that looks like a comment
+DK95/00: Tabs that look like indentation
+DK95/01: Tabs that look like indentation
+DK95/03: Tabs that look like indentation
+DK95/04: Tabs that look like indentation
+EB22: Missing document-end marker before directive
+FP8R: Zero indented block scalar
+FRK4: Spec Example 7.3. Completely Empty Flow Nodes
+G5U8: Plain dashes in flow sequence
+HM87/00: Scalars in flow start with syntax char
+HM87/01: Scalars in flow start with syntax char
+HWV9: Document-end marker
+JEF9/02: Trailing whitespace in streams
+K3WX: Colon and adjacent value after comment on next line
+L24T/01: Trailing line of spaces
+M2N8/00: Question mark edge cases
+M7A3: Spec Example 9.3. Bare Documents
+MUS6/00: Directive variants
+MUS6/01: Directive variants
+MUS6/05: Directive variants
+MUS6/06: Directive variants
+NHX8: Empty Lines at End of Document
+NJ66: Multiline plain flow mapping key
+NKF9: Empty keys in block and flow mapping
+Q5MG: Tab at beginning of line followed by a flow mapping
+QB6E: Wrong indented multiline quoted scalar
+QT73: Comment and document-end marker
+R4YG: Spec Example 8.2. Block Indentation Indicator
+RHX7: YAML directive without document end marker
+S3PD: Spec Example 8.18. Implicit Block Mapping Entries
+S98Z: Block scalar with more spaces than first content line
+SM9W/01: Single character streams
+SU5Z: Comment without whitespace after doublequoted scalar
+UKK6/00: Syntax character edge cases
+UT92: Spec Example 9.4. Explicit Documents
+VJP3/01: Flow collections over many lines
+W4TN: Spec Example 9.5. Directives Documents
+W5VH: Allowed characters in alias
+X4QW: Comment without whitespace after block scalar indicator
+Y2GN: Anchor with colon in the middle
+Y79Y/001: Tabs in various contexts
+Y79Y/003: Tabs in various contexts
+Y79Y/010: Tabs in various contexts
+YJV2: Dash in flow sequence
