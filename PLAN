@@ -1,0 +1,38 @@
+syaml plan
+
+1. Fork
+   Import serde_yaml and unsafe-libyaml. CI on stable and MSRV.
+   Triage upstream issues.
+   done when: v0.1.0 on crates.io as a drop-in replacement.
+
+2. Tests
+   yaml-test-suite in CI. Fuzzing of scanner, parser, emitter and
+   serde round trips. Differential tests against C libyaml.
+   done when: fuzzing runs in CI; conformance published.
+
+3. Scanner
+   Reader and tokenizer in safe Rust.
+   done when: no unsafe in these modules; differential tests pass.
+
+4. Parser
+   Events, anchors, aliases and tags in safe Rust. Limits on alias
+   expansion and nesting depth.
+   done when: no unsafe in the parser; limits tested.
+
+5. Emitter
+   Emitter and writer in safe Rust.
+   done when: no unsafe in the emitter; round trips fuzzed 30 days
+   without findings.
+
+6. Unsafe
+   Remove the rest. no_std with alloc.
+   done when: builds with forbid(unsafe_code); audit and benchmarks
+   published.
+
+7. Release
+   Migration patches for the largest dependents. Security policy.
+   done when: v1.0.0 tagged; migration PRs listed.
+
+8. Maintenance
+   Triage, releases, security reports, for the whole period.
+   done when: every report has a public answer.
