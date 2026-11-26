@@ -1081,10 +1081,7 @@ unsafe fn yaml_emitter_check_simple_key(emitter: *mut yaml_emitter_t) -> bool {
         }
         _ => return false,
     }
-    if length > 128_u64 {
-        return false;
-    }
-    true
+    length <= 128_u64
 }
 
 unsafe fn yaml_emitter_select_scalar_style(
