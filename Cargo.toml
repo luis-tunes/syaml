@@ -9,7 +9,6 @@ rust-version = "1.64"
 
 [dependencies]
 indexmap = "2.2.1"
-itoa = "1.0"
 ryu = "1.0"
 serde = "1.0.195"
 
